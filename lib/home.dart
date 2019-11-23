@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
-
-import './components/horizontalList.dart';
-// import'components/carousel.dart';
-
+import './components/RecProducts.dart';
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -45,14 +42,17 @@ class _HomePageState extends State<HomePage>{
 
       body: new ListView(
         children: <Widget>[
-          // Tabs
-//           new Padding(padding: const EdgeInsets.all(8.0),
-//           child: new Text('Recommended'), ),
-
           // Image caraousel starts here
           image_carousel,
-          // Horizontal Listing
-          HorizontalList(),
+           //Tabs
+           new Padding(padding: const EdgeInsets.all(8.0),
+           child: new Text('Recommended'), ),
+
+          // GridView
+          Container(
+            height: 320.0,
+            child: RecProducts(),
+          )
         ],
       ),
 
@@ -90,6 +90,7 @@ class _HomePageState extends State<HomePage>{
           );
         },
       ),
+
     );
   }
 }
