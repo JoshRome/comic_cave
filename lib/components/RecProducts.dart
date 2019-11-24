@@ -8,30 +8,15 @@ class RecProducts extends StatefulWidget {
 class _RecProductsState extends State<RecProducts> {
   var prodList = [
     {
-      "name:": "Infernal Tides",
-      "picture": "images/m0",
+      "name": "Infernal Tides",
+      "picture": "images/m0.PNG",
+      "price": "2.99"
+    },
+    {
+      "name": "Red Hood Outlaw",
+      "picture": "images/m2.PNG",
       "price": "2.99",
-      "issue": "Issue #1",
-    }
-
-//    {
-//      "name:": "Lex Luthor",
-//      "picture" : "images/m1",
-//      "price": "2.99",
-//      "issue": "Issue #2",
-//    },
-//    {
-//      "name:": "Red Hood Outlaw: Prince of Gotham",
-//      "picture" : "images/m2",
-//      "price": "2.99",
-//      "issue": "Issue #3",
-//    },
-//    {
-//      "name:": "The Avengers",
-//      "picture" : "images/m3",
-//      "price": "2.99",
-//      "issue": "Issue #5",
-//    }
+    },
   ];
 
   @override
@@ -45,7 +30,6 @@ class _RecProductsState extends State<RecProducts> {
             prodName: prodList[index]['name'],
             prodPic: prodList[index]['picture'],
             prodPrice: prodList[index]['price'],
-            prodIssue: prodList[index]['issue'],
           );
         });
   }
@@ -55,12 +39,10 @@ class SingleProd extends StatelessWidget {
   final prodName;
   final prodPic;
   final prodPrice;
-  final prodIssue;
 
   SingleProd({
     this.prodName,
     this.prodPic,
-    this.prodIssue,
     this.prodPrice,
   });
 
@@ -74,11 +56,12 @@ class SingleProd extends StatelessWidget {
               onTap: () {},
               child: GridTile(
                   footer: Container(
-                    color: Colors.white,
+                    color: Colors.white70,
                     child: ListTile(
                       leading: Text(
                         prodName,
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.black),
                       ),
                     ),
                   ),
