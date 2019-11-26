@@ -1,4 +1,5 @@
-import 'package:comic_cave/components/RecProducts.dart';
+import 'package:comic_cave/components/RecProducts.dart' as gridOne;
+import 'package:comic_cave/components/Upcoming.dart' as gridTwo;
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,24 +24,8 @@ class _HomePageState extends State<HomePage>
   }
 
   Widget build(BuildContext context) {
-//    Widget imageCarousel = new Container(
-//        height: 175,
-//        child: new Carousel(
-//          boxFit: BoxFit.cover,
-//          images: [
-//            AssetImage('images/m0.PNG'),
-//            AssetImage('images/m1.PNG'),
-//            AssetImage('images/m2.PNG'),
-//            AssetImage('images/m3.PNG'),
-//          ],
-//          autoplay: false,
-////      animationCurve: Curves.fastOutSlowIn,
-////      animationDuration: Duration(milliseconds: 1000),
-//          dotSize: 4.0,
-//          indicatorBgPadding: 4.0,
-//        ));
-
     return Scaffold(
+      backgroundColor: Colors.black87,
       appBar: new AppBar(
         elevation: 0.0,
         backgroundColor: Colors.deepPurple,
@@ -48,22 +33,19 @@ class _HomePageState extends State<HomePage>
         title: Text('Featured'),
         bottom: new TabBar(
           controller: controller,
+
           tabs: <Widget>[
-            new Tab(text: "Upcoming"),
             new Tab(text: "Recommended"),
+            new Tab(text: "Upcoming"),
           ],
         ),
       ),
-      body: new ListView(
-        children: <Widget>[
-          // Image carousel starts here
-          // imageCarousel,
 
-          // GridView
-          Container(
-            height: 320.0,
-            child: RecProducts(),
-          )
+      body: new TabBarView(
+        controller: controller,
+        children: <Widget>[
+          new gridOne.RecProducts(),
+          new gridTwo.Upcoming()
         ],
       ),
     );
