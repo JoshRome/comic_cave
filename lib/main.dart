@@ -28,6 +28,7 @@ class ComicCaveState extends State<ComicCave> {
     return MaterialApp(
 
       home: Scaffold(
+        //backgroundColor: Colors.black26,
         body: _pageOptions[_selectedPage],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _selectedPage,
@@ -37,6 +38,7 @@ class ComicCaveState extends State<ComicCave> {
             });
           },
           backgroundColor: Colors.deepPurple,
+
           items: [
             BottomNavigationBarItem(
                 icon: Icon(Icons.home),
@@ -66,12 +68,3 @@ class ComicCaveState extends State<ComicCave> {
     );
   }
 }
-
-//void main(){
-//  runApp(
-//    new MaterialApp(
-//      home: HomePage(),
-//
-//    )
-//  );
-//}
