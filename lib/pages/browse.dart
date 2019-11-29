@@ -1,3 +1,4 @@
+import 'package:comic_cave/components/BrowseProducts.dart';
 import 'package:flutter/material.dart';
 
 class BrowsePage extends StatefulWidget {
@@ -14,7 +15,20 @@ class _BrowsePageState extends State<BrowsePage> {
         backgroundColor: Colors.deepPurple,
         centerTitle: true,
         title: Text('Browse'),
+        actions: <Widget>[
+          new IconButton(
+              icon: Icon(
+                Icons.search,
+                color: Colors.white,
+              ),
+              onPressed: () {
+
+              }),
+        ],
       ),
+      body: BrowseProducts(),
     );
   }
 }
+
+

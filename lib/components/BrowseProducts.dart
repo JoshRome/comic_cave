@@ -1,12 +1,12 @@
 import 'package:comic_cave/pages/product_details.dart';
 import 'package:flutter/material.dart';
 
-class Upcoming extends StatefulWidget {
+class BrowseProducts extends StatefulWidget {
   @override
-  _UpcomingState createState() => _UpcomingState();
+  _BrowseProductsState createState() => _BrowseProductsState();
 }
 
-class _UpcomingState extends State<Upcoming> {
+class _BrowseProductsState extends State<BrowseProducts> {
   var prodList = [
     {
       "name": "Year of the Villain: Lex Luthor",
@@ -27,6 +27,26 @@ class _UpcomingState extends State<Upcoming> {
       "artist": "Ed McGuinness",
       "description":
           "Thor Odinson. Steve Rogers. Tony Stark. The Big Three of the Avengers are reunited at last! And just in time to save the world from total annihilation at the hands of their most powerful enemies yet: the 2000-foot-tall space gods known as Celestials. Behold the coming of the Final Host. Who will answer the call to assemble for a wild new era of Earth’s Mightiest Heroes? Hint: one of them has a flaming skull for a head. And what strange, world-shaking connection exists between the Final Host and Odin’s ancient band of Prehistoric Avengers?"
+    },
+    {
+      "name": "Dungeons and Dragons: Infernal Tides",
+      "picture": "images/m0.PNG",
+      "price": "2.99",
+      "brand": "Dungeons and Dragons",
+      "writer": "Jim Zub",
+      "artist": "Max Dunbar",
+      "description":
+          "In Infernal Tides, fan-favorite Minsc and his friends are caught in the middle of devil-tainted corruption that has taken hold of Baldur’s Gate. Unravelling the secret of its source will take the heroes to unexpected places and threaten the sanctity of their very souls. Even if they survive this perilous journey, there will be Hell to pay!"
+    },
+    {
+      "name": "Red Hood Outlaw: Prince of Gotham",
+      "picture": "images/m2.PNG",
+      "price": "16.99",
+      "brand": "DC",
+      "writer": "Scott Lobdell",
+      "artist": "Pete Woodd",
+      "description":
+          "The Outlaws never thought things would look this bad, as Jason Todd gives in to his addiction to Venom in order to find the missing Starfire in Red Hood: Outlaw Vol. 2: Prince of Gotham! "
     },
   ];
 

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import './pages/browse.dart';
 import './pages/cart.dart';
 import './pages/home.dart';
-import'./pages/search.dart';
 
 void main() => runApp(ComicCave());
 
@@ -18,7 +17,6 @@ class ComicCaveState extends State<ComicCave> {
   int _selectedPage = 0;
   final _pageOptions = [
     HomePage(),
-    SearchPage(),
     BrowsePage(),
     CartPage()
   ];
@@ -41,25 +39,21 @@ class ComicCaveState extends State<ComicCave> {
 
           items: [
             BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                title: Text('Home'),
-                backgroundColor: Colors.deepPurple
-            ),
-
-            BottomNavigationBarItem(icon: Icon(Icons.search),
-                title: Text('Search'),
+                icon: Icon(Icons.home, color: Colors.white),
+                title: Text('Home', style: TextStyle(color: Colors.white),),
                 backgroundColor: Colors.deepPurple
             ),
 
             BottomNavigationBarItem(
-                icon: Icon(Icons.line_weight),
-                title: Text('Browse'),
+                icon: Icon(Icons.line_weight, color: Colors.white),
+                title: Text('Browse', style: TextStyle(color: Colors.white),),
                 backgroundColor: Colors.deepPurple
             ),
 
             BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_cart),
-                title: Text('View Cart'),
+                icon: Icon(Icons.shopping_cart, color: Colors.white),
+                title: new Text(
+                  'View Cart', style: TextStyle(color: Colors.white),),
                 backgroundColor: Colors.deepPurple
             ),
           ],

@@ -42,7 +42,7 @@ class _ProdDetailsState extends State<ProdDetails> {
                 child: Image.asset(widget.prodDetImage),
               ),
               footer: new Container(
-                color: Colors.white70,
+                color: Colors.white,
                 child: ListTile(
                   leading: new Text(
                     widget.prodDetName,
@@ -71,7 +71,7 @@ class _ProdDetailsState extends State<ProdDetails> {
                 color: Colors.deepPurple,
                 textColor: Colors.white,
                 elevation: .2,
-                child: new Text("Add to Cart"),
+                    child: new Text("Add to Cart"),
               )),
             ],
           ),

@@ -1,5 +1,6 @@
 import 'package:comic_cave/pages/product_details.dart';
 import 'package:flutter/material.dart';
+
 class RecProducts extends StatefulWidget {
   @override
   _RecProductsState createState() => _RecProductsState();
@@ -88,7 +89,8 @@ class SingleProd extends StatelessWidget {
                       ))),
               child: GridTile(
                   footer: Container(
-                    color: Colors.white,
+                    color: Colors.white70,
+
                     child: new Row(children: <Widget>[
                       Expanded(
                         child: Text(prodName, style: TextStyle(
