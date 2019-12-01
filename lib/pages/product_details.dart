@@ -1,22 +1,31 @@
 import 'package:flutter/material.dart';
 
 class ProdDetails extends StatefulWidget {
-  final prodDetName;
-  final prodDetImage;
+  final prodDetComicId;
+  final prodDetArtistId;
+  final prodDetPublisher;
+  final prodDetWriterId;
+  final prodDetComicName;
   final prodDetPrice;
-  final prodDetBrand;
-  final prodDetArtist;
-  final prodDetWriter;
-  final prodDetDescription;
+  final prodDetDesc;
+  final prodDetImage;
+  final prodDetQuant;
+  final prodDetRelease;
+  final prodDetRec;
 
-  ProdDetails(
-      {this.prodDetName,
-      this.prodDetImage,
-      this.prodDetPrice,
-      this.prodDetBrand,
-      this.prodDetArtist,
-      this.prodDetWriter,
-      this.prodDetDescription});
+  ProdDetails({
+    this.prodDetComicId,
+    this.prodDetArtistId,
+    this.prodDetPublisher,
+    this.prodDetWriterId,
+    this.prodDetComicName,
+    this.prodDetPrice,
+    this.prodDetDesc,
+    this.prodDetImage,
+    this.prodDetQuant,
+    this.prodDetRelease,
+    this.prodDetRec,
+  });
 
   @override
   _ProdDetailsState createState() => _ProdDetailsState();
@@ -39,15 +48,18 @@ class _ProdDetailsState extends State<ProdDetails> {
             child: GridTile(
               child: Container(
                 color: Colors.white,
-                child: Image.asset(widget.prodDetImage),
+                child: Image.network(
+                    'https://comiccave.space/uploads/${widget.prodDetImage}'),
+                //Image.asset("${widget.prodDetImage}")
+                //Image.asset(widget.prodDetComicId)
               ),
               footer: new Container(
                 color: Colors.white,
                 child: ListTile(
                   leading: new Text(
-                    widget.prodDetName,
+                    widget.prodDetComicName,
                     style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+                    TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
                   ),
                   title: new Row(
                     children: <Widget>[
@@ -67,18 +79,18 @@ class _ProdDetailsState extends State<ProdDetails> {
             children: <Widget>[
               Expanded(
                   child: MaterialButton(
-                onPressed: () {},
-                color: Colors.deepPurple,
-                textColor: Colors.white,
-                elevation: .2,
+                    onPressed: () {},
+                    color: Colors.deepPurple,
+                    textColor: Colors.white,
+                    elevation: .2,
                     child: new Text("Add to Cart"),
-              )),
+                  )),
             ],
           ),
           Divider(),
           new ListTile(
             title: new Text("Summary"),
-            subtitle: new Text(widget.prodDetDescription),
+            subtitle: new Text(widget.prodDetDesc),
           ),
           Divider(),
           new Row(
@@ -92,7 +104,7 @@ class _ProdDetailsState extends State<ProdDetails> {
               ),
               Padding(
                 padding: EdgeInsets.all(5.0),
-                child: new Text(widget.prodDetArtist),
+                child: new Text(widget.prodDetArtistId),
               ),
             ],
           ),
@@ -107,7 +119,7 @@ class _ProdDetailsState extends State<ProdDetails> {
               ),
               Padding(
                 padding: EdgeInsets.all(5.0),
-                child: new Text(widget.prodDetWriter),
+                child: new Text(widget.prodDetWriterId),
               ),
             ],
           ),
@@ -122,7 +134,7 @@ class _ProdDetailsState extends State<ProdDetails> {
               ),
               Padding(
                 padding: EdgeInsets.all(5.0),
-                child: new Text(widget.prodDetBrand),
+                child: new Text(widget.prodDetPublisher),
               ),
             ],
           ),

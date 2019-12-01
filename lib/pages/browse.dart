@@ -1,5 +1,6 @@
 import 'package:comic_cave/components/BrowseProducts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class BrowsePage extends StatefulWidget {
   @override
@@ -7,6 +8,10 @@ class BrowsePage extends StatefulWidget {
 }
 
 class _BrowsePageState extends State<BrowsePage> {
+
+  Icon cusIcon = Icon(Icons.search);
+  Widget cusSearchBar = Text("Browse");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,21 +19,33 @@ class _BrowsePageState extends State<BrowsePage> {
         elevation: 0.0,
         backgroundColor: Colors.deepPurple,
         centerTitle: true,
-        title: Text('Browse'),
+        title: cusSearchBar,
         actions: <Widget>[
           new IconButton(
-              icon: Icon(
-                Icons.search,
-                color: Colors.white,
-              ),
-              onPressed: () {
-
-              }),
+            icon: cusIcon,
+            onPressed: () {
+              setState(() {
+                if (this.cusIcon.icon == Icons.search) {
+                  this.cusIcon = Icon(Icons.cancel);
+                  this.cusSearchBar = TextField(
+                    textInputAction: TextInputAction.go,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16.0,
+                    ),
+                  );
+                }
+                else {
+                  this.cusIcon = Icon(Icons.search);
+                  this.cusSearchBar = Text("Browse");
+                }
+              });
+            },
+          ),
         ],
       ),
       body: BrowseProducts(),
     );
   }
 }
-
 

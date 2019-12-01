@@ -1,5 +1,9 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:comic_cave/pages/product_details.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class RecProducts extends StatefulWidget {
   @override
@@ -7,101 +11,125 @@ class RecProducts extends StatefulWidget {
 }
 
 class _RecProductsState extends State<RecProducts> {
-  var prodList = [
-    {
-      "name": "Dungeons and Dragons: Infernal Tides",
-      "picture": "images/m0.PNG",
-      "price": "2.99",
-      "brand": "Dungeons and Dragons",
-      "writer": "Jim Zub",
-      "artist": "Max Dunbar",
-      "description": "In Infernal Tides, fan-favorite Minsc and his friends are caught in the middle of devil-tainted corruption that has taken hold of Baldur’s Gate. Unravelling the secret of its source will take the heroes to unexpected places and threaten the sanctity of their very souls. Even if they survive this perilous journey, there will be Hell to pay!"
-    },
-    {
-      "name": "Red Hood Outlaw: Prince of Gotham",
-      "picture": "images/m2.PNG",
-      "price": "16.99",
-      "brand": "DC",
-      "writer": "Scott Lobdell",
-      "artist": "Pete Woodd",
-      "description": "The Outlaws never thought things would look this bad, as Jason Todd gives in to his addiction to Venom in order to find the missing Starfire in Red Hood: Outlaw Vol. 2: Prince of Gotham! "
-    },
-  ];
+  var data;
+  var pics;
+  List userPics;
+  List userData;
+
+  Future getData() async {
+    http.Response response = await http.get(
+        "https://comiccave.space/app/rec.php");
+    //http.Response resp = await http.get("https://comiccave.space/uploads/1");
+    data = json.decode(response.body);
+    //pics = json.decode(resp.body);
+    //debugPrint(response.body);
+    setState(() {
+      userData = data;
+      //userPics = pics;
+//      print(userData);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-        itemCount: prodList.length,
+        itemCount: userData == null ? 0 : userData.length,
         gridDelegate:
         new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (BuildContext context, int index) {
           return SingleProd(
-              prodName: prodList[index]['name'],
-              prodPic: prodList[index]['picture'],
-              prodPrice: prodList[index]['price'],
-              prodBrand: prodList[index]['brand'],
-              prodWriter: prodList[index]['writer'],
-              prodArtist: prodList[index]['artist'],
-              prodDescription: prodList[index]['description']
+            prodComicId: userData[index]['comic_id'],
+            prodArtistId: userData[index]['artist_id'],
+            prodPublisher: userData[index]['publisher_id'],
+            prodWriterId: userData[index]['writer_id'],
+            prodComicName: userData[index]['comic_name'],
+            prodPrice: userData[index]['price'],
+            prodDesc: userData[index]['description'],
+            prodImage: userData[index]['cover_image'],
+            prodQuant: userData[index]['quantity'],
+            prodRelease: userData[index]['released'],
+            prodRec: userData[index]['recommended'],
           );
         });
   }
 }
 
 class SingleProd extends StatelessWidget {
-  final prodName;
-  final prodPic;
+  final prodComicId;
+  final prodArtistId;
+  final prodPublisher;
+  final prodWriterId;
+  final prodComicName;
   final prodPrice;
-  final prodBrand;
-  final prodWriter;
-  final prodArtist;
-  final prodDescription;
+  final prodDesc;
+  final prodImage;
+  final prodQuant;
+  final prodRelease;
+  final prodRec;
+
 
   SingleProd({
-    this.prodName,
-    this.prodPic,
+    this.prodComicId,
+    this.prodArtistId,
+    this.prodPublisher,
+    this.prodWriterId,
+    this.prodComicName,
     this.prodPrice,
-    this.prodBrand,
-    this.prodWriter,
-    this.prodArtist,
-    this.prodDescription
+    this.prodDesc,
+    this.prodImage,
+    this.prodQuant,
+    this.prodRelease,
+    this.prodRec,
   });
 
   @override
   Widget build(BuildContext context) {
     return Card(
       child: Hero(
-          tag: prodName,
+          tag: prodComicName,
           child: Material(
             child: InkWell(
               onTap: () =>
                   Navigator.of(context).push(new MaterialPageRoute(
-                      builder: (context) =>
-                      new ProdDetails(
-                        // Passing in values of products
-                        prodDetName: prodName,
-                        prodDetImage: prodPic,
-                        prodDetPrice: prodPrice,
-                        prodDetBrand: prodBrand,
-                        prodDetArtist: prodArtist,
-                        prodDetWriter: prodWriter,
-                        prodDetDescription: prodDescription,
-                      ))),
+                    builder: (context) =>
+                    new ProdDetails(
+                      // Passing in values of products
+                      prodDetComicId: prodComicId,
+                      prodDetArtistId: prodArtistId,
+                      prodDetPublisher: prodPublisher,
+                      prodDetWriterId: prodWriterId,
+                      prodDetComicName: prodComicName,
+                      prodDetPrice: prodPrice,
+                      prodDetDesc: prodDesc,
+                      prodDetImage: prodImage,
+                      prodDetQuant: prodQuant,
+                      prodDetRelease: prodRelease,
+                      prodDetRec: prodRec,
+                    ),
+                  )),
               child: GridTile(
                   footer: Container(
                     color: Colors.white70,
-
-                    child: new Row(children: <Widget>[
-                      Expanded(
-                        child: Text(prodName, style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16.0),),
-                      ),
-                    ],
+                    child: new Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            prodComicName,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 16.0),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  child: Image.asset(
-                    prodPic,
+                  child: Image.network(
+                    'https://comiccave.space/uploads/$prodImage',
                     fit: BoxFit.fill,
                   )),
             ),

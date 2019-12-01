@@ -61,4 +61,16 @@ class ComicCaveState extends State<ComicCave> {
       ),
     );
   }
+
+//  Future getData() async{
+//    var url = 'https://comiccave.space/get.php';
+//    http.Response response = await http.get(url);
+//    var data = jsonDecode(response.body);
+//    print(data.toString());
+//  }
+//
+//  @override
+//  void initState() {
+//    getData();
+//  }
 }
