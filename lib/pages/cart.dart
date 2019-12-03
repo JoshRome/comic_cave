@@ -2,11 +2,18 @@ import 'package:flutter/material.dart';
 //import 'package:comic_cave/components/cart_products.dart';
 
 class CartPage extends StatefulWidget {
+  final comicName;
+  final price;
+
+  CartPage({this.comicName, this.price});
+
   @override
   _CartPageState createState() => _CartPageState();
 }
 
 class _CartPageState extends State<CartPage> {
+  List data = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,13 +23,21 @@ class _CartPageState extends State<CartPage> {
         centerTitle: true,
         title: Text('View Cart'),
       ),
+      body: new Container(
+        child: ListView.builder(
+            itemCount: 1,
+            itemBuilder: (BuildContext context, int index) {
+              return buildRow();
+            }
+        ),
+      ),
       bottomNavigationBar: new Container(
         color: Colors.white,
         child: Row(
           children: <Widget>[
             Expanded(child: ListTile(
               title: new Text("Total:"),
-              subtitle: new Text("\$230.00"),
+              subtitle: new Text(widget.price),
             )),
 
             Expanded(
@@ -35,6 +50,13 @@ class _CartPageState extends State<CartPage> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget buildRow() {
+    return new ListTile(
+        title: new Text(widget.comicName,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0))
     );
   }
 }

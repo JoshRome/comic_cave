@@ -12,21 +12,14 @@ class BrowseProducts extends StatefulWidget {
 
 class _BrowseProductsState extends State<BrowseProducts> {
   var data;
-  var pics;
-  List userPics;
   List userData;
 
   Future getData() async {
     http.Response response = await http.get(
         "https://comiccave.space/app/get.php");
-    //http.Response resp = await http.get("https://comiccave.space/uploads/1");
     data = json.decode(response.body);
-    //pics = json.decode(resp.body);
-    //debugPrint(response.body);
     setState(() {
       userData = data;
-      //userPics = pics;
-//      print(userData);
     });
   }
 
