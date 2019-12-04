@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
-//import 'package:comic_cave/components/cart_products.dart';
 
 class CartPage extends StatefulWidget {
   final comicName;
   final price;
 
   CartPage({this.comicName, this.price});
-
   @override
   _CartPageState createState() => _CartPageState();
 }
 
 class _CartPageState extends State<CartPage> {
   List data = [];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +22,7 @@ class _CartPageState extends State<CartPage> {
       ),
       body: new Container(
         child: ListView.builder(
-            itemCount: 1,
+            itemCount: data == null ? 0 : data.length,
             itemBuilder: (BuildContext context, int index) {
               return buildRow();
             }
@@ -36,8 +33,9 @@ class _CartPageState extends State<CartPage> {
         child: Row(
           children: <Widget>[
             Expanded(child: ListTile(
-              title: new Text("Total:"),
-              subtitle: new Text(widget.price),
+              leading: new Text("Total:"),
+              title: widget.price == null ? new Text("Empty Cart") : new Text(
+                  "${widget.price}"),
             )),
 
             Expanded(
@@ -53,10 +51,52 @@ class _CartPageState extends State<CartPage> {
     );
   }
 
+  Widget calcTotal() {
+    // return;
+  }
   Widget buildRow() {
     return new ListTile(
-        title: new Text(widget.comicName,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0))
+      leading: Text(widget.comicName,
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0)),
+      title: Text(widget.price, style: TextStyle(
+          color: Colors.red, fontWeight: FontWeight.bold, fontSize: 16.0)),
     );
   }
 }
+
+//class ListDisplay extends StatefulWidget {
+//  @override
+//  State createState() => new DyanmicList();
+//}
+//
+//class DyanmicList extends State<ListDisplay> {
+//  List<String> litems = [];
+//  final TextEditingController eCtrl = new TextEditingController();
+//  @override
+//  Widget build (BuildContext ctxt) {
+//    return new Scaffold(
+//        appBar: new AppBar(title: new Text("Dynamic Demo"),),
+//        body: new Column(
+//          children: <Widget>[
+//            new TextField(
+//              controller: eCtrl,
+//              onSubmitted: (text) {
+//                litems.add(text);
+//                eCtrl.clear();
+//                setState(() {});
+//              },
+//            ),
+//            new Expanded(
+//                child: new ListView.builder
+//                  (
+//                    itemCount: litems.length,
+//                    itemBuilder: (BuildContext ctxt, int Index) {
+//                      return new Text(litems[Index]);
+//                    }
+//                )
+//            )
+//          ],
+//        )
+//    );
+//  }
+//}

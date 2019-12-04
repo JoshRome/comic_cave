@@ -18,7 +18,7 @@ class _UpcomingState extends State<Upcoming> {
 
   Future getData() async {
     http.Response response = await http.get(
-        "https://comiccave.space/app/rel.php");
+        "https://comic-cave.space/app/rel.php");
     //http.Response resp = await http.get("https://comiccave.space/uploads/1");
     data = json.decode(response.body);
     //pics = json.decode(resp.body);
@@ -128,7 +128,7 @@ class SingleProd extends StatelessWidget {
                     ),
                   ),
                   child: Image.network(
-                    'https://comiccave.space/uploads/$prodImage',
+                    'https://comic-cave.space/uploads/$prodImage',
                     fit: BoxFit.fill,
                   )),
             ),

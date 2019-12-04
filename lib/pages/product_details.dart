@@ -1,4 +1,4 @@
-import 'package:comic_cave/pages/cart.dart';
+import 'package:comic_cave/components/CartProducts.dart';
 import 'package:flutter/material.dart';
 
 class ProdDetails extends StatefulWidget {
@@ -49,7 +49,7 @@ class _ProdDetailsState extends State<ProdDetails> {
               child: Container(
                 color: Colors.white,
                 child: Image.network(
-                    'https://comiccave.space/uploads/${widget.prodDetImage}'),
+                    'https://comic-cave.space/uploads/${widget.prodDetImage}'),
               ),
               footer: new Container(
                 color: Colors.white,
@@ -77,15 +77,14 @@ class _ProdDetailsState extends State<ProdDetails> {
             children: <Widget>[
               Expanded(
                   child: RaisedButton(
-                    onPressed: () =>
-                        Navigator.of(context).push(
-                            new MaterialPageRoute(builder: (context) =>
-                            new CartPage(
-                              comicName: widget.prodDetComicName,
-                              price: widget.prodDetPrice,
-                            )
-                            )),
-
+                    onPressed: () {
+                      Navigator.push(
+                          context, new MaterialPageRoute(builder: (context) =>
+                          CartProducts(
+                            comicName: widget.prodDetComicName,
+                            price: widget.prodDetPrice,)
+                      ));
+                    },
                     color: Colors.deepPurple,
                     textColor: Colors.white,
                     elevation: .2,

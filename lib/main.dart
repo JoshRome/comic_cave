@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import './pages/browse.dart';
 import './pages/cart.dart';
 import './pages/home.dart';
+import './pages/search.dart';
 
 void main() => runApp(ComicCave());
 
@@ -17,14 +17,14 @@ class ComicCaveState extends State<ComicCave> {
   int _selectedPage = 0;
   final _pageOptions = [
     HomePage(),
-    BrowsePage(),
+    SearchPage(),
     CartPage()
   ];
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         //backgroundColor: Colors.black26,
         body: _pageOptions[_selectedPage],
@@ -61,16 +61,4 @@ class ComicCaveState extends State<ComicCave> {
       ),
     );
   }
-
-//  Future getData() async{
-//    var url = 'https://comiccave.space/get.php';
-//    http.Response response = await http.get(url);
-//    var data = jsonDecode(response.body);
-//    print(data.toString());
-//  }
-//
-//  @override
-//  void initState() {
-//    getData();
-//  }
 }
